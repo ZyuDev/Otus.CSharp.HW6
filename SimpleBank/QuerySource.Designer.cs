@@ -61,6 +61,20 @@ namespace SimpleBank {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Table Accounts(
+        ///	Id SERIAL PRIMARY KEY,
+        ///	AccountNumber VARCHAR(100) NOT NULL,
+        ///	CurrencyId INTEGER NOT NULL references currencies(id),
+        ///	OwnerId INTEGER NOT NULL references persons(id)
+        ///).
+        /// </summary>
+        internal static string CreateTableAccounts {
+            get {
+                return ResourceManager.GetString("CreateTableAccounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Table Currencies(
         ///	Id SERIAL PRIMARY KEY,
         ///	Code NCHAR(3) NOT NULL,
@@ -71,6 +85,36 @@ namespace SimpleBank {
         internal static string CreateTableCurrencies {
             get {
                 return ResourceManager.GetString("CreateTableCurrencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Table Persons(
+        ///	Id SERIAL PRIMARY KEY,
+        ///	FirstName VARCHAR(100) NOT NULL,
+        ///	LastName VARCHAR(100) NOT NULL,
+        ///	MiddleName VARCHAR(100) NOT NULL,
+        ///	DateOfBirth TIMESTAMP NOT NULL
+        ///).
+        /// </summary>
+        internal static string CreateTablePersons {
+            get {
+                return ResourceManager.GetString("CreateTablePersons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Table Transactions(
+        ///	Id SERIAL PRIMARY KEY,
+        ///	Period TIMESTAMP NOT NULL,
+        ///	Direction INTEGER NOT NULL,
+        ///	AccountId INTEGER NOT NULL references accounts(id),
+        ///	Amount DECIMAL NOT NULL
+        ///).
+        /// </summary>
+        internal static string CreateTableTransactions {
+            get {
+                return ResourceManager.GetString("CreateTableTransactions", resourceCulture);
             }
         }
         

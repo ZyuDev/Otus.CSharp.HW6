@@ -117,12 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateTableAccounts" xml:space="preserve">
+    <value>Create Table Accounts(
+	Id SERIAL PRIMARY KEY,
+	AccountNumber VARCHAR(100) NOT NULL,
+	CurrencyId INTEGER NOT NULL references currencies(id),
+	OwnerId INTEGER NOT NULL references persons(id)
+)</value>
+  </data>
   <data name="CreateTableCurrencies" xml:space="preserve">
     <value>Create Table Currencies(
 	Id SERIAL PRIMARY KEY,
 	Code NCHAR(3) NOT NULL,
 	IsoCode NCHAR(3) NOT NULL,
 	Title NCHAR(100) NOT NULL
+)</value>
+  </data>
+  <data name="CreateTablePersons" xml:space="preserve">
+    <value>Create Table Persons(
+	Id SERIAL PRIMARY KEY,
+	FirstName VARCHAR(100) NOT NULL,
+	LastName VARCHAR(100) NOT NULL,
+	MiddleName VARCHAR(100) NOT NULL,
+	DateOfBirth TIMESTAMP NOT NULL
+)</value>
+  </data>
+  <data name="CreateTableTransactions" xml:space="preserve">
+    <value>Create Table Transactions(
+	Id SERIAL PRIMARY KEY,
+	Period TIMESTAMP NOT NULL,
+	Direction INTEGER NOT NULL,
+	AccountId INTEGER NOT NULL references accounts(id),
+	Amount DECIMAL NOT NULL
 )</value>
   </data>
   <data name="TableExists" xml:space="preserve">

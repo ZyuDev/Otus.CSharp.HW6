@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using SimpleBank.Data;
+using SimpleBank.Services;
 using System;
 
 namespace SimpleBank.UI
@@ -14,26 +15,13 @@ namespace SimpleBank.UI
             {
 
                 var currencyTableService = new CurrencyTableService(connection);
+                var personTableService = new PersonTableService(connection);
+                var accountTableService = new AccountTableService(connection);
+                var transactionTableService = new TransactionTableService(connection);
 
-                var tableExists = currencyTableService.TableExists();
+                var tableManager = new TableManager(currencyTableService, personTableService, accountTableService, transactionTableService);
 
-                if (tableExists)
-                {
-                    Console.WriteLine($"Currency table exists: {tableExists}");
-                }
-                else
-                {
-                    try
-                    {
-                        currencyTableService.CreateTable();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine($"Cannot create table. Message: {e.Message}");
-                    }
-                }
-
-
+                tableManager.CreateTables();
 
 
             }
