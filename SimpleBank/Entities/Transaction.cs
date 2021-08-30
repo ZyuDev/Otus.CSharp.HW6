@@ -13,5 +13,6 @@ namespace SimpleBank.Entities
         public TransactionDirections Direction { get; set; }
         public int AccountId { get; set; }
         public decimal Amount { get; set; }
+        public string Info { get; set; }
     }
 }

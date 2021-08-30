@@ -13,5 +13,10 @@ namespace SimpleBank.Entities
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public DateTime DateOfBirth { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {MiddleName} {LastName} - {DateOfBirth:dd.MM.yyyy}";
+        }
     }
 }

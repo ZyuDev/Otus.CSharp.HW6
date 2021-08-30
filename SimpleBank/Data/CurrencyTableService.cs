@@ -6,7 +6,7 @@ namespace SimpleBank.Data
     public class CurrencyTableService: TableServiceBase
     {
 
-        public CurrencyTableService(NpgsqlConnection connection):base(connection, "currencies")
+        public CurrencyTableService(NpgsqlConnection connection):base(connection, DbTableNames.CurrencyTableName)
         {
         }
 

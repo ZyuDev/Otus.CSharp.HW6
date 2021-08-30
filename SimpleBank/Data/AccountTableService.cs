@@ -5,7 +5,7 @@ namespace SimpleBank.Data
 {
     public class AccountTableService: TableServiceBase
     {
-        public AccountTableService(NpgsqlConnection connection) : base(connection, "accounts")
+        public AccountTableService(NpgsqlConnection connection) : base(connection, DbTableNames.AccountTableName)
         {
 
         }

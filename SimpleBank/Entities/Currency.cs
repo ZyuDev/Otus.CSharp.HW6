@@ -10,12 +10,12 @@ namespace SimpleBank.Entities
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public string IsoCode { get; set; }
+        public string CodeNumeric { get; set; }
         public string Title { get; set; }
 
         public override string ToString()
         {
-            return $"{Code} {IsoCode}";
+            return $"{Code} {CodeNumeric}";
         }
     }
 }

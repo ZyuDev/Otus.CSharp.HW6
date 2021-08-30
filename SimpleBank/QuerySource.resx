@@ -129,7 +129,7 @@
     <value>Create Table Currencies(
 	Id SERIAL PRIMARY KEY,
 	Code NCHAR(3) NOT NULL,
-	IsoCode NCHAR(3) NOT NULL,
+	CodeNumeric NCHAR(3) NOT NULL,
 	Title NCHAR(100) NOT NULL
 )</value>
   </data>
@@ -150,6 +150,14 @@
 	AccountId INTEGER NOT NULL references accounts(id),
 	Amount DECIMAL NOT NULL
 )</value>
+  </data>
+  <data name="InsertAccount" xml:space="preserve">
+    <value>INSERT INTO public.accounts(accountnumber, currencyid, ownerid)
+VALUES (@accountnumber, @currencyid, @ownerid)</value>
+  </data>
+  <data name="InsertPerson" xml:space="preserve">
+    <value>INSERT INTO public.persons(firstname, lastname, middlename, dateofbirth) 
+VALUES (@firstname, @lastname, @middlename, @dateofbirth)</value>
   </data>
   <data name="TableExists" xml:space="preserve">
     <value>SELECT EXISTS (

@@ -78,7 +78,7 @@ namespace SimpleBank {
         ///   Looks up a localized string similar to Create Table Currencies(
         ///	Id SERIAL PRIMARY KEY,
         ///	Code NCHAR(3) NOT NULL,
-        ///	IsoCode NCHAR(3) NOT NULL,
+        ///	CodeNumeric NCHAR(3) NOT NULL,
         ///	Title NCHAR(100) NOT NULL
         ///).
         /// </summary>
@@ -115,6 +115,26 @@ namespace SimpleBank {
         internal static string CreateTableTransactions {
             get {
                 return ResourceManager.GetString("CreateTableTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO public.accounts(accountnumber, currencyid, ownerid)
+        ///VALUES (@accountnumber, @currencyid, @ownerid).
+        /// </summary>
+        internal static string InsertAccount {
+            get {
+                return ResourceManager.GetString("InsertAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO public.persons(firstname, lastname, middlename, dateofbirth) 
+        ///VALUES (@firstname, @lastname, @middlename, @dateofbirth).
+        /// </summary>
+        internal static string InsertPerson {
+            get {
+                return ResourceManager.GetString("InsertPerson", resourceCulture);
             }
         }
         

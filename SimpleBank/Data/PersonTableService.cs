@@ -5,7 +5,7 @@ namespace SimpleBank.Data
 {
     public class PersonTableService: TableServiceBase
     {
-        public PersonTableService(NpgsqlConnection connection): base(connection, "persons")
+        public PersonTableService(NpgsqlConnection connection): base(connection, DbTableNames.PersonTableName)
         {
 
         }

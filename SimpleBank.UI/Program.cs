@@ -13,7 +13,7 @@ namespace SimpleBank.UI
 
             using (var connection = new NpgsqlConnection(connectionString))
             {
-
+                // Create DB tables if neccessary.
                 var currencyTableService = new CurrencyTableService(connection);
                 var personTableService = new PersonTableService(connection);
                 var accountTableService = new AccountTableService(connection);
@@ -23,7 +23,13 @@ namespace SimpleBank.UI
 
                 tableManager.CreateTables();
 
+                // Initial DB fill.
+                var currencyService = new CurrencyDataService(connection);
+                var personService = new PersonDataService(connection);
+                var fillDataUoW = new FillDbUnitOfWork(currencyService, personService);
 
+                fillDataUoW.CreateCurrencies();
+                fillDataUoW.CreatePersons();
             }
 
             Console.WriteLine("Hello World!");
