@@ -2,6 +2,8 @@
 using SimpleBank.Data;
 using SimpleBank.Services;
 using System;
+using SimpleBank.Data.DataServices;
+using SimpleBank.Data.TableServices;
 
 namespace SimpleBank.UI
 {
@@ -24,12 +26,13 @@ namespace SimpleBank.UI
                 tableManager.CreateTables();
 
                 // Initial DB fill.
-                var currencyService = new CurrencyDataService(connection);
-                var personService = new PersonDataService(connection);
-                var fillDataUoW = new FillDbUnitOfWork(currencyService, personService);
+                var dataServiceFactory = new DataServiceFactory(connection);
+                
+                var fillDataUoW = new FillDbUnitOfWork(dataServiceFactory);
 
                 fillDataUoW.CreateCurrencies();
                 fillDataUoW.CreatePersons();
+                fillDataUoW.CreateAccounts();
             }
 
             Console.WriteLine("Hello World!");

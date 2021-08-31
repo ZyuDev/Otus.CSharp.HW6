@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using Npgsql;
+using SimpleBank.Data.DataServices;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.TableServices
 {
     public class AccountTableService: TableServiceBase
     {

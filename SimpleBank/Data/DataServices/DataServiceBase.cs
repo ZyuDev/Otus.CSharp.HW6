@@ -1,8 +1,11 @@
-﻿using Dapper;
-using Npgsql;
+﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using Dapper;
+using Npgsql;
+using SimpleBank.Data.Abstract;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.DataServices
 {
     public abstract class DataServiceBase<T>: IDataService<T>
     {
@@ -16,6 +19,15 @@ namespace SimpleBank.Data
             _connection = connection;
             _tableName = tableName;
 
+        }
+
+        public virtual List<T> GetCollection()
+        {
+            var query = $"SELECT * FROM {_tableName}";
+
+            var collection = _connection.Query<T>(query).ToList();
+
+            return collection;
         }
 
         public virtual T GetItem(int id)

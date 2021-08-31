@@ -1,14 +1,9 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using Npgsql;
 using SimpleBank.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.DataServices
 {
     public class AccountDataService : DataServiceBase<Account>
     {
@@ -24,7 +19,7 @@ namespace SimpleBank.Data
             var parameters = new DynamicParameters();
             parameters.Add("accountnumber", item.AccountNumber, DbType.String);
             parameters.Add("currencyid", item.CurrencyId, DbType.Int32);
-            parameters.Add("middlename", item.OwnerId, DbType.Int32);
+            parameters.Add("ownerid", item.OwnerId, DbType.Int32);
 
             var result = _connection.Execute(query, parameters);
 

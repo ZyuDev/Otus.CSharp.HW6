@@ -12,5 +12,10 @@ namespace SimpleBank.Entities
         public string AccountNumber { get; set; }
         public int CurrencyId { get; set; }
         public int OwnerId { get; set; }
+
+        public override string ToString()
+        {
+            return AccountNumber;
+        }
     }
 }

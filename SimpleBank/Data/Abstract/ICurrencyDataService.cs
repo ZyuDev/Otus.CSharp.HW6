@@ -1,6 +1,6 @@
 ﻿using SimpleBank.Entities;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.Abstract
 {
     public interface ICurrencyDataService: IDataService<Currency>
     {

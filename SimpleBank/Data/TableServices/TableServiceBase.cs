@@ -1,8 +1,9 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using Npgsql;
-using System.Data;
+using SimpleBank.Data.Abstract;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.TableServices
 {
     public abstract class TableServiceBase : ITableService
     {

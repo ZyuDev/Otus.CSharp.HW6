@@ -1,14 +1,10 @@
-﻿using Npgsql;
-using SimpleBank.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using Dapper;
+using Npgsql;
+using SimpleBank.Data.Abstract;
+using SimpleBank.Entities;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.DataServices
 {
     public class CurrencyDataService : DataServiceBase<Currency>, ICurrencyDataService
     {

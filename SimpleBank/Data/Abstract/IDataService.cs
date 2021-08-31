@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.Abstract
 {
     public interface IDataService<T>
     {
         string TableName { get; }
+        List<T> GetCollection();
         T GetItem(int id);
         int CreateItem(T item);
         int Count();

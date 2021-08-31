@@ -1,14 +1,9 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using Npgsql;
 using SimpleBank.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimpleBank.Data
+namespace SimpleBank.Data.DataServices
 {
     public class PersonDataService: DataServiceBase<Person>
     {
