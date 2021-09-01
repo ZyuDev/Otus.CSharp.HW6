@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleBank.Data.Abstract;
 using SimpleBank.Data.DataServices;
+using SimpleBank.Enums;
 
 namespace SimpleBank.Services
 {
@@ -111,6 +112,45 @@ namespace SimpleBank.Services
                     Console.WriteLine($"Cannot create account {newAccount}. Message: {e.Message}");
                 }
             }
+        }
+
+        public void CreateTransactions()
+        {
+            var transactionService = _factory.CreateTransactionService();
+            
+            if (transactionService.Count() > 0)
+            {
+                return;
+            }
+
+            var accountService = _factory.CreateAccountService();
+            var accounts = accountService.GetCollection();
+
+            var rnd = new Random();
+
+            foreach (var account in accounts)
+            {
+                var newTransaction = new Transaction()
+                {
+                    AccountId = account.Id,
+                    Direction = TransactionDirections.Plus,
+                    Period = new DateTime(2021,1,1),
+                    Amount = rnd.Next(100, 1000),
+                    Info = "Первоначальный взнос"
+                };
+                
+                try
+                {
+                    transactionService.CreateItem(newTransaction);
+                    Console.WriteLine($"Transaction {newTransaction} created");
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Cannot create transaction {newTransaction}. Message: {e.Message}");
+                }
+            }
+
         }
     }
 }

@@ -139,6 +139,16 @@ namespace SimpleBank {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO public.transactions(period, direction, accountid, amount)
+        ///	VALUES (@period, @direction, @accountid, @amount).
+        /// </summary>
+        internal static string InsertTransaction {
+            get {
+                return ResourceManager.GetString("InsertTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT EXISTS (
         ///   SELECT 1
         ///   FROM   information_schema.tables 

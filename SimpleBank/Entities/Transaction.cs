@@ -14,5 +14,11 @@ namespace SimpleBank.Entities
         public int AccountId { get; set; }
         public decimal Amount { get; set; }
         public string Info { get; set; }
+
+        public override string ToString()
+        {
+            var sign = Direction == TransactionDirections.Minus ? "-" : "+";
+            return $"{Period} {Direction} {Amount} {Info}";
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace SimpleBank.UI
                 fillDataUoW.CreateCurrencies();
                 fillDataUoW.CreatePersons();
                 fillDataUoW.CreateAccounts();
+                fillDataUoW.CreateTransactions();
             }
 
             Console.WriteLine("Hello World!");

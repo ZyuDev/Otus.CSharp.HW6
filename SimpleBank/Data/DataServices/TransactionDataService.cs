@@ -1,4 +1,6 @@
-﻿using Npgsql;
+﻿using System.Data;
+using Dapper;
+using Npgsql;
 using SimpleBank.Entities;
 
 namespace SimpleBank.Data.DataServices
@@ -11,7 +13,16 @@ namespace SimpleBank.Data.DataServices
 
         public override int CreateItem(Transaction item)
         {
-            throw new System.NotImplementedException();
+            var query = QuerySource.InsertTransaction;
+            var parameters = new DynamicParameters();
+            parameters.Add("period", item.Period, DbType.DateTime);
+            parameters.Add("direction", item.Direction, DbType.Int32);
+            parameters.Add("accountid", item.AccountId, DbType.Int32);
+            parameters.Add("amount", item.Amount, DbType.Decimal);
+
+            var result = _connection.Execute(query, parameters);
+
+            return result;
         }
     }
 }

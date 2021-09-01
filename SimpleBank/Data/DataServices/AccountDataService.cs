@@ -26,14 +26,14 @@ namespace SimpleBank.Data.DataServices
             return result;
         }
 
-        public Currency GetItem(string code)
+        public Account GetItem(string accountNumber)
         {
 
-            var query = @"SELECT * FROM currencies WHERE code = @code";
+            var query = $"SELECT * FROM {_tableName} WHERE accountnumber = @accountNumber";
             var parameters = new DynamicParameters();
-            parameters.Add("code", code, DbType.String);
+            parameters.Add("accountNumber", accountNumber, DbType.String);
 
-            var item = _connection.QueryFirstOrDefault<Currency>(query, parameters);
+            var item = _connection.QueryFirstOrDefault<Account>(query, parameters);
 
             return item;
 
