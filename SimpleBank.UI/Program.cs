@@ -13,39 +13,15 @@ namespace SimpleBank.UI
         static void Main(string[] args)
         {
             var connectionString = @"Host = localhost; Port = 5432; Database = SimpleBank; User Id = sa; Password = 1;";
-
+           
+            var initService = new InitDataBaseService(connectionString);
             PrintCommon.PrintAppHeader();
-            using (var connection = new NpgsqlConnection(connectionString))
-            {
-                // Create DB tables if neccessary.
-                var currencyTableService = new CurrencyTableService(connection);
-                var personTableService = new PersonTableService(connection);
-                var accountTableService = new AccountTableService(connection);
-                var transactionTableService = new TransactionTableService(connection);
+            initService.Init();
 
-                var tableManager = new TableManager(currencyTableService, personTableService, accountTableService,
-                    transactionTableService);
-
-                tableManager.CreateTables();
-
-                // Initial DB fill.
-                var dataServiceFactory = new DataServiceFactory(connection);
-
-                var fillDataUoW = new FillDbUnitOfWork(dataServiceFactory);
-
-                fillDataUoW.CreateCurrencies();
-                fillDataUoW.CreatePersons();
-                fillDataUoW.CreateAccounts();
-                fillDataUoW.CreateTransactions();
-            }
-
-            Console.WriteLine("App READY");
-            PrintCommon.PrintDelimiter();
-
-            var fladContinue = true;
+            var flagContinue = true;
             var printer = new TablePrinter(connectionString);
 
-            while (fladContinue)
+            while (flagContinue)
             {
                 MenuPrinter.Print();
 
@@ -67,9 +43,18 @@ namespace SimpleBank.UI
                         printer.PrintTransactions();
                         break;
                     case '5':
+                        Console.WriteLine("Enter transaction in format: [accountnumber] [+/-] [amount] <info>");
+                        Console.WriteLine("Example: 0001840 - 15 MacDac");
+                        var inputString = Console.ReadLine();
+                        var inputService = new TransactionInputService(connectionString);
+                        var result = inputService.InputTransaction(inputString);
+                        if (result == 0)
+                        {
+                            Console.WriteLine("Transaction created");
+                        }
                         break;
                     case 'e':
-                        fladContinue = false;
+                        flagContinue = false;
                         break;
                     default:
                         break;

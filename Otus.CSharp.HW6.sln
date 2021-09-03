@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBank", "SimpleBank\Si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBank.UI", "SimpleBank.UI\SimpleBank.UI.csproj", "{F809505C-8A21-4B57-990A-92F96BC62616}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBank.UnitTests", "SimpleBank.UnitTests\SimpleBank.UnitTests.csproj", "{DED25006-518B-4BA7-9AEF-D888F1C6D285}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F809505C-8A21-4B57-990A-92F96BC62616}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F809505C-8A21-4B57-990A-92F96BC62616}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F809505C-8A21-4B57-990A-92F96BC62616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED25006-518B-4BA7-9AEF-D888F1C6D285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED25006-518B-4BA7-9AEF-D888F1C6D285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED25006-518B-4BA7-9AEF-D888F1C6D285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED25006-518B-4BA7-9AEF-D888F1C6D285}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

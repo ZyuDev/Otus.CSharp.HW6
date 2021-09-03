@@ -19,7 +19,8 @@ namespace SimpleBank.Data.DataServices
             parameters.Add("direction", item.Direction, DbType.Int32);
             parameters.Add("accountid", item.AccountId, DbType.Int32);
             parameters.Add("amount", item.Amount, DbType.Decimal);
-
+            parameters.Add("info", item.Info, DbType.String);
+            
             var result = _connection.Execute(query, parameters);
 
             return result;

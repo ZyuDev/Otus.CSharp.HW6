@@ -109,8 +109,8 @@ namespace SimpleBank {
         ///	Period TIMESTAMP NOT NULL,
         ///	Direction INTEGER NOT NULL,
         ///	AccountId INTEGER NOT NULL references accounts(id),
-        ///	Amount DECIMAL NOT NULL
-        ///).
+        ///	Amount DECIMAL NOT NULL,
+        ///	info VARCHAR(200) ).
         /// </summary>
         internal static string CreateTableTransactions {
             get {
@@ -139,8 +139,8 @@ namespace SimpleBank {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO public.transactions(period, direction, accountid, amount)
-        ///	VALUES (@period, @direction, @accountid, @amount).
+        ///   Looks up a localized string similar to INSERT INTO public.transactions(period, direction, accountid, amount, info)
+        ///	VALUES (@period, @direction, @accountid, @amount, @info).
         /// </summary>
         internal static string InsertTransaction {
             get {

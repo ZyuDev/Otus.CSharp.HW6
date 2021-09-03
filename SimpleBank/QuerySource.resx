@@ -148,8 +148,8 @@
 	Period TIMESTAMP NOT NULL,
 	Direction INTEGER NOT NULL,
 	AccountId INTEGER NOT NULL references accounts(id),
-	Amount DECIMAL NOT NULL
-)</value>
+	Amount DECIMAL NOT NULL,
+	info VARCHAR(200) )</value>
   </data>
   <data name="InsertAccount" xml:space="preserve">
     <value>INSERT INTO public.accounts(accountnumber, currencyid, ownerid)
@@ -168,7 +168,7 @@ VALUES (@firstname, @lastname, @middlename, @dateofbirth)</value>
    );</value>
   </data>
   <data name="InsertTransaction" xml:space="preserve">
-    <value>INSERT INTO public.transactions(period, direction, accountid, amount)
-	VALUES (@period, @direction, @accountid, @amount)</value>
+    <value>INSERT INTO public.transactions(period, direction, accountid, amount, info)
+	VALUES (@period, @direction, @accountid, @amount, @info)</value>
   </data>
 </root>

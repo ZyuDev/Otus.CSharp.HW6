@@ -5,34 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleBank.Data.Abstract;
+using SimpleBank.Data.TableServices;
 
 namespace SimpleBank.Services
 {
     public class TableManager
     {
+        private readonly ITableServiceFactory _factory;
 
-        private readonly ITableService _currencyTableService;
-        private readonly ITableService _personTableService;
-        private readonly ITableService _accountTableService;
-        private readonly ITableService _transactionTableService;
-
-        public TableManager(ITableService currencyTableService,
-            ITableService personTableService,
-            ITableService accountTableService,
-            ITableService transactionTableService)
+        public TableManager(ITableServiceFactory factory)
         {
-            _currencyTableService = currencyTableService;
-            _personTableService = personTableService;
-            _accountTableService = accountTableService;
-            _transactionTableService = transactionTableService;
+            _factory = factory;
         }
 
         public void CreateTables()
         {
-            CreateTable(_currencyTableService);
-            CreateTable(_personTableService);
-            CreateTable(_accountTableService);
-            CreateTable(_transactionTableService);
+            CreateTable(_factory.CreateCurrencyTableService());
+            CreateTable(_factory.CreatePersonTableService());
+            CreateTable(_factory.CreateAccountTableService());
+            CreateTable(_factory.CreateTransactionTableService());
         }
 
         private void CreateTable(ITableService tableService)
