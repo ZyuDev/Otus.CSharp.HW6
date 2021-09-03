@@ -18,7 +18,7 @@ namespace SimpleBank.Entities
         public override string ToString()
         {
             var sign = Direction == TransactionDirections.Minus ? "-" : "+";
-            return $"{Period} {Direction} {Amount} {Info}";
+            return $"{Period} {sign} {Amount} {Info}";
         }
     }
 }

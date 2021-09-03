@@ -4,6 +4,7 @@ using SimpleBank.Services;
 using System;
 using SimpleBank.Data.DataServices;
 using SimpleBank.Data.TableServices;
+using SimpleBank.UI.Print;
 
 namespace SimpleBank.UI
 {
@@ -13,6 +14,7 @@ namespace SimpleBank.UI
         {
             var connectionString = @"Host = localhost; Port = 5432; Database = SimpleBank; User Id = sa; Password = 1;";
 
+            PrintCommon.PrintAppHeader();
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 // Create DB tables if neccessary.
@@ -21,13 +23,14 @@ namespace SimpleBank.UI
                 var accountTableService = new AccountTableService(connection);
                 var transactionTableService = new TransactionTableService(connection);
 
-                var tableManager = new TableManager(currencyTableService, personTableService, accountTableService, transactionTableService);
+                var tableManager = new TableManager(currencyTableService, personTableService, accountTableService,
+                    transactionTableService);
 
                 tableManager.CreateTables();
 
                 // Initial DB fill.
                 var dataServiceFactory = new DataServiceFactory(connection);
-                
+
                 var fillDataUoW = new FillDbUnitOfWork(dataServiceFactory);
 
                 fillDataUoW.CreateCurrencies();
@@ -36,7 +39,42 @@ namespace SimpleBank.UI
                 fillDataUoW.CreateTransactions();
             }
 
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("App READY");
+            PrintCommon.PrintDelimiter();
+
+            var fladContinue = true;
+            var printer = new TablePrinter(connectionString);
+
+            while (fladContinue)
+            {
+                MenuPrinter.Print();
+
+                var key = Console.ReadKey();
+                Console.WriteLine();
+
+                switch (key.KeyChar)
+                {
+                    case '1':
+                        printer.PrintCurrencies();
+                        break;
+                    case '2':
+                        printer.PrintPersons();
+                        break;
+                    case '3':
+                        printer.PrintAccounts();
+                        break;
+                    case '4':
+                        printer.PrintTransactions();
+                        break;
+                    case '5':
+                        break;
+                    case 'e':
+                        fladContinue = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
